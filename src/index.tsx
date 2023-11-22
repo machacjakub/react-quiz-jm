@@ -20,6 +20,8 @@ const Item = memo(({item, onClick}: {item: IItem, onClick: (name: string) => voi
     )
 })
 
+const ItemsList = ({items, selectItem}: {items: IItem[], selectItem: (name: string) => void}) => <div>{items.map((boxer) => <Item item={boxer} onClick={selectItem}/>)}</div>
+
 const SelectedItems = ({items}: {items: IItem[]}) => {
     return <div style={{margin: '8px 10px'}}>Selected: {items.map(item => <span key={item.name} style={{ padding: '4px 8px', margin:'4px', backgroundColor: 'hsl(200, 80%, 94%)', border: '2px solid hsl(200, 100%, 80%)' , borderRadius: 10}}>{item.name}</span>)}</div>
 }
@@ -28,8 +30,8 @@ const App = ({ boxers }: { boxers: IBoxer[] }) => {
     const {items, selectedItems, selectItem} = useItems(boxers);
     return (
         <div style={{display: 'flex', flexWrap: 'wrap' }}>
-            <div><SelectedItems items={selectedItems}/></div>
-            <div>{items.map((boxer) => <Item item={boxer} onClick={selectItem}/>)}</div>
+            <SelectedItems items={selectedItems}/>
+            <ItemsList items={items} selectItem={selectItem}/>
         </div>
     )
 }
