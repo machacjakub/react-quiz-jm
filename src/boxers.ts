@@ -1,4 +1,12 @@
-export const boxersList = [
+export interface IBoxer {
+    name: string,
+    division: string,
+    fights: number,
+    win: number,
+    loss: number,
+    kos: number,
+}
+export const boxersList: IBoxer[] = [
     {
         name: "Muhammad Ali",
         division: "heavy",
